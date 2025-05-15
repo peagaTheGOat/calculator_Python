@@ -1,42 +1,25 @@
-while True:
-    op = input("operation: ")
-    n1 = ""
-    n2 = ""
-    nums = "0123456789."
-    operators = "+-/*%"
-    phase = 0
-    sign = ""
 
-    for i in op:
-        if phase == 0:
-            if i in nums:
-                n1 += i
-            elif i in operators:
-                sign = i
-                phase = 2
-        elif i in nums:
-                n2 += i
-
-    if sign == "+":
-        r = str(int(n1) + int(n2))
-    elif sign == "-":
-        r = str(int(n1) - int(n2))
-    elif sign == "*":
-        r = str(int(n1) * int(n2))
-    elif sign == "/":
-        if int(n2) == 0:
-            r = "divisão por zero é mals"
-        else:
-            r = str(int(n1) / int(n2))
-    elif sign == "%":
-        r = str((int(n1) / 100) * int(n2))
-    else:
-        r = "nem vc sabe oq vc quer fazer"
-
-
-    if r == "divisão por zero é mals" or r == "nem vc sabe oq vc quer fazer":
-        print(r)
-
+def calc(n1, sign, n2):
+    match sign:
+        case "+":
+            r = int(n1) + int(n2)
+        case "-":
+            r = int(n1) - int(n2)
+        case "*":
+            r = int(n1) * int(n2)
+        case "/":
+            if n2 != "0":
+                r = int(n1) / int(n2)
+            else:
+                print("divisão por zero é mals")
+                return
+        case "%":
+            r = (int(n1) / 100) * int(n2)
+        case _:
+            print("nem vc sabe oq vc quer fazer")
+            return
+    
+    r = str(r)
     if len(r) > len(n1) and len(r) > len(n2) and sign != "/":
         print(" "*((len(r)-len(n1))-1), n1)
         print(sign, " "*((len(r)-len(n2)-len(sign))), n2, sep='')
@@ -77,3 +60,33 @@ while True:
             print(n1,"|"," "*(len(r)-len(n2)),n2,sep='')
             print("-"*(len(n1)+len(r)+1))
             print(" "*len(n1),"|",r,sep='')
+    return
+
+
+while True:
+    op = input("Conta: ")
+    if op == "sair":
+        break
+    nums = "0123456789."
+    operators = "+-/*%"
+    phase = 0
+
+    n1 = ""
+    n2 = ""
+    sign = ""
+
+    for i in op:
+        if phase == 0:
+            if i in nums:
+                n1 += i
+            elif i in operators:
+                sign = i
+                phase = 2
+        elif i in nums:
+                n2 += i
+    try:
+        calc(n1, sign, n2)
+    except:
+        print("Deu merda issae. aprende a escrever puta")
+print("até mais!")
+    

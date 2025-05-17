@@ -11,12 +11,12 @@ def calc(n1, sign, n2):
             if n2 != "0":
                 r = int(n1) / int(n2)
             else:
-                print("divisão por zero é mals")
+                print("Divisão por zero é mals")
                 return
         case "%":
             r = (int(n1) / 100) * int(n2)
         case _:
-            print("nem vc sabe oq vc quer fazer")
+            print("Nem vc sabe oq vc quer fazer")
             return
     
     r = str(r)
@@ -65,7 +65,7 @@ def calc(n1, sign, n2):
 
 while True:
     op = input("Conta: ")
-    if op == "sair":
+    if op == "Sair":
         break
     nums = "0123456789."
     operators = "+-/*%"
@@ -87,6 +87,6 @@ while True:
     try:
         calc(n1, sign, n2)
     except:
-        print("Deu merda issae. aprende a escrever puta")
-print("até mais!")
+        print("Deu merda issae. aprende a escrever, puta")
+print("Até mais!")
     
